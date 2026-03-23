@@ -9,7 +9,7 @@ function getHeaders() {
 
 // Auth
 export async function register(name, email, password) {
-  const res = await fetch(`${API_URL}/auth/register`, {
+  const res = await fetch(`${API_URL}/api/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, password }),
@@ -20,7 +20,7 @@ export async function register(name, email, password) {
 }
 
 export async function login(email, password) {
-  const res = await fetch(`${API_URL}/auth/login`, {
+  const res = await fetch(`${API_URL}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
@@ -31,14 +31,14 @@ export async function login(email, password) {
 }
 
 export async function getMe() {
-  const res = await fetch(`${API_URL}/auth/me`, { headers: getHeaders() });
+  const res = await fetch(`${API_URL}/api/auth/me`, { headers: getHeaders() });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Not authenticated');
   return data;
 }
 
 export async function updateSettings(settings) {
-  const res = await fetch(`${API_URL}/auth/settings`, {
+  const res = await fetch(`${API_URL}/api/auth/settings`, {
     method: 'PATCH',
     headers: getHeaders(),
     body: JSON.stringify(settings),
