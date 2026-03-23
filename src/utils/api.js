@@ -50,21 +50,21 @@ export async function updateSettings(settings) {
 
 // Chats
 export async function fetchChats() {
-  const res = await fetch(`${API_URL}/chats`, { headers: getHeaders() });
+  const res = await fetch(`${API_URL}/api/chats`, { headers: getHeaders() });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Failed to fetch chats');
   return data;
 }
 
 export async function fetchChat(chatId) {
-  const res = await fetch(`${API_URL}/chats/${chatId}`, { headers: getHeaders() });
+  const res = await fetch(`${API_URL}/api/chats/${chatId}`, { headers: getHeaders() });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Failed to fetch chat');
   return data;
 }
 
 export async function createChat(title) {
-  const res = await fetch(`${API_URL}/chats`, {
+  const res = await fetch(`${API_URL}/api/chats`, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({ title }),
@@ -75,7 +75,7 @@ export async function createChat(title) {
 }
 
 export async function renameChat(chatId, title) {
-  const res = await fetch(`${API_URL}/chats/${chatId}`, {
+  const res = await fetch(`${API_URL}/api/chats/${chatId}`, {
     method: 'PATCH',
     headers: getHeaders(),
     body: JSON.stringify({ title }),
@@ -86,7 +86,7 @@ export async function renameChat(chatId, title) {
 }
 
 export async function deleteChat(chatId) {
-  const res = await fetch(`${API_URL}/chats/${chatId}`, {
+  const res = await fetch(`${API_URL}/api/chats/${chatId}`, {
     method: 'DELETE',
     headers: getHeaders(),
   });
@@ -100,7 +100,7 @@ export function streamCompletion(chatId, content, options = {}) {
   const token = localStorage.getItem('token');
   const controller = new AbortController();
 
-  const promise = fetch(`${API_URL}/chats/${chatId}/completions`, {
+  const promise = fetch(`${API_URL}/api/chats/${chatId}/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
