@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://mercury-backend-g8mu.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
